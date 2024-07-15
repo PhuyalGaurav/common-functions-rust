@@ -1,8 +1,20 @@
 fn main() {
-    let nineteen_fact_iterative: u128 = factorial_iterative(30);
-    let nineteen_fact_recursive: u128 = factorial_recurcive(30);
-    println!("Factorial of 19 using iterative process= {nineteen_fact_iterative}");
-    println!("Factorial of 19 using recursive process= {nineteen_fact_recursive}");
+    // Factorial
+    {
+        const FACTNUM: u128 = 10;
+        let nineteen_fact_iterative: u128 = factorial_iterative(FACTNUM);
+        let nineteen_fact_recursive: u128 = factorial_recurcive(FACTNUM);
+        println!("Factorial of {FACTNUM} using iterative process= {nineteen_fact_iterative}");
+        println!("Factorial of {FACTNUM} using recursive process= {nineteen_fact_recursive}");
+    }
+
+    //Fibonacii Series
+    {
+        let fibo: Vec<u32> = fibonachii_series(10);
+        for i in fibo {
+            println!("{i}")
+        }
+    }
 }
 
 fn factorial_iterative(x: u128) -> u128 {
@@ -24,4 +36,21 @@ fn factorial_recurcive(x: u128) -> u128 {
     } else {
         return x * factorial_recurcive(x - 1);
     }
+}
+
+fn fibonachii_series(x: u32) -> Vec<u32> {
+    let mut count: u32 = 0;
+    let mut series: Vec<u32> = vec![];
+    let mut a: u32 = 0;
+    let mut b: u32 = 1;
+    series.push(a);
+    series.push(b);
+    while count != x {
+        series.push(a + b);
+        let temp: u32 = a;
+        a = b;
+        b = temp + b;
+        count += 1;
+    }
+    return series;
 }
