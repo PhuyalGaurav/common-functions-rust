@@ -12,7 +12,25 @@ fn main() {
     {
         let fibo: Vec<u32> = fibonachii_series(10);
         for i in fibo {
-            println!("{i}")
+            print!("{i}, ")
+        }
+        println!("");
+    }
+
+    // Least element
+    {
+        let numbers: Vec<u32> = [32, 45, 3, 43, 2, 12, 34, 23, 12, 325].to_vec();
+        let minimum: u32 = minimum_element(numbers);
+        println!("Minimum Element : {minimum}");
+    }
+
+    // Check Prime Numbers
+    {
+        let number: u32 = 32;
+        if check_prime(number) {
+            println!("{number} is a prime number");
+        } else {
+            println!("{number} is not a prime number");
         }
     }
 }
@@ -53,4 +71,37 @@ fn fibonachii_series(x: u32) -> Vec<u32> {
         count += 1;
     }
     return series;
+}
+
+fn minimum_element(array: Vec<u32>) -> u32 {
+    if array.is_empty() {
+        panic!("No number to find lowest")
+    }
+    let array2: Vec<u32> = array;
+    let mut least: u32 = u32::MAX;
+    for i in array2 {
+        if i < least {
+            least = i;
+        }
+    }
+    return least;
+}
+
+fn check_prime(n: u32) -> bool {
+    let mut i: u32 = 1;
+    let mut count: u32 = 0;
+    loop {
+        if n % i == 0 {
+            count = count + 1;
+        }
+        if i == n {
+            break;
+        }
+        i += 1;
+    }
+    if count == 2 {
+        return true;
+    } else {
+        return false;
+    }
 }
