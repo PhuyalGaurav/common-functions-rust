@@ -1,3 +1,5 @@
+use std::mem::swap;
+
 fn main() {
     // Factorial
     {
@@ -33,6 +35,9 @@ fn main() {
             println!("{number} is not a prime number");
         }
     }
+
+    let random_vector: Vec<usize> = vec![1, 12, 4, 5, 324, 6, 234, 123, 6, 7];
+    arr_sort(&random_vector);
 }
 
 fn factorial_iterative(x: u128) -> u128 {
@@ -103,5 +108,17 @@ fn check_prime(n: u32) -> bool {
         return true;
     } else {
         return false;
+    }
+}
+
+fn arr_sort(array: &Vec<usize>) {
+    let mut new_array: Vec<usize> = array.clone();
+    for (index, i) in new_array.iter().enumerate() {
+        for (index2, j) in new_array.iter().enumerate() {
+            if j < i {
+                let temp: usize = new_array[index];
+                new_array[index2] = temp;
+            }
+        }
     }
 }
